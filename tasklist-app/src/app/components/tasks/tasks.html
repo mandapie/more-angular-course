@@ -1,0 +1,22 @@
+@if(isAddingTask) {
+    <app-new-task [taskUserId]="selectedUserId" (close)="onCloseAddTask()"></app-new-task>
+    <!-- the `(add) output is no longer needed because we're using services. But I'm keeping this here for example -->
+    <!-- <app-new-task [taskUserId]="selectedUserId" (close)="onCloseAddTask()" (add)="onAddTask($event)"></app-new-task> -->
+}
+
+<section id="tasks">
+    <header>
+        <h2>{{selectedUserName}}'s Tasks</h2>
+        <menu>
+            <button (click)="onOpenNewTask()">Add Task</button>
+        </menu>
+    </header>
+
+    <ul>
+        @for (task of selectedUserTasks; track task.id) {
+        <li>
+            <app-task [selectedUserTask]="task"></app-task>
+        </li>
+        }
+    </ul>
+</section>
