@@ -1,6 +1,7 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ParameterModel } from '../../models/parameter.model';
+import { InvestmentsService } from '../../services/investments';
 
 @Component({
   selector: 'app-user-input',
@@ -9,8 +10,6 @@ import { ParameterModel } from '../../models/parameter.model';
   styleUrl: './user-input.css'
 })
 export class UserInputComponent {
-  parameter = output<ParameterModel>();
-
   parameterInput = signal<ParameterModel>({
     initialInvestment: 0,
     duration: 0,
@@ -18,7 +17,9 @@ export class UserInputComponent {
     expectedReturn: 0
   });
 
+  constructor(private investmentsService: InvestmentsService) { }
+
   onSubmit() {
-    this.parameter.emit(this.parameterInput());
+    this.investmentsService.calculateInvestmentResults(this.parameterInput());
   }
 }

@@ -1,6 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ResultModel } from '../../models/result.model';
+import { InvestmentsService } from '../../services/investments';
 
 @Component({
   selector: 'app-result',
@@ -9,5 +9,9 @@ import { ResultModel } from '../../models/result.model';
   styleUrl: './result.css'
 })
 export class ResultComponent {
-  results = input<ResultModel[]>([]); 
+  constructor(private investmentsService: InvestmentsService) {}
+
+  get results() {
+    return this.investmentsService.results();
+  }
 }

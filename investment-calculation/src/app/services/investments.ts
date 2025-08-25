@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { ParameterModel } from '../models/parameter.model';
 import { ResultModel } from '../models/result.model';
 
@@ -6,6 +6,8 @@ import { ResultModel } from '../models/result.model';
   providedIn: 'root'
 })
 export class InvestmentsService {
+  results = signal<ResultModel[]>([]);
+
   calculateInvestmentResults(parameter: ParameterModel) {
     const annualData: ResultModel[] = [];
     let investmentValue = parameter.initialInvestment;
@@ -26,6 +28,6 @@ export class InvestmentsService {
       });
     }
 
-    return annualData;
+    this.results.set(annualData);
   }
 }
