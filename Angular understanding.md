@@ -22,7 +22,17 @@ Made standalone default. Angular 16 introduced `signal`s, but it became stable i
 2. When you generate a component with the cli, `standalone` attribute doesn't show in the `@Component` decorator, because it's true by default. But you can still add it, it won't be a problem.
 3. NgFor is deprecated. Use `@for` instead. Need to have a `track` keyword.
 
-## Refresher
+## Folder structure
+I can't seem to find a standard Angular folder structure. I think this makes the most sense to me.
+```
+|_app
+  |_components
+    |_shared components
+  |_models
+  |_services
+```
+
+## Angular concepts? topics? ecosystem?
 #### Directives
 - You can "enhance" elements with directives. Eg `<input ngModel/>` ngModel is directive provided by Angular that extracts changing inputs.
 - Kinda like component, you can create your own directive, but it doesn't have a template. You'll need to import a directive like a component too.
@@ -55,7 +65,6 @@ Made standalone default. Angular 16 introduced `signal`s, but it became stable i
 #### two-way binding
 - The syntax is `[(directive)]="property"`. Eg `<input [(ngModel)]="inputName"/>` offers 2 way binding for an input. It inputs/outputs value for the `inputName` property set in the component class.
 
-## Learnings that takes time to absorb
 #### Signals
 Use `signal` to set the property values so that it Angular can act upon (via zone.js) the property when a change happens. Once you declare a signal, you call it like a function on the html side.
 Eg:
@@ -73,12 +82,17 @@ name = signal('your value');
 ```
 
 #### two way binding with signals
-Don't know if it only applies to `ngModel` directive, but changing the properties into a signal type will not affect the template (HTML) side.
+- Don't know if it only applies to `ngModel` directive, but changing the properties into a signal type will not affect the template (HTML) side.
+- ngModel requires the name attribute. eg `<input name="attributeName" [(ngModel)]="model.attributeName">`
 
 #### Components
-Non-standalone components:
-- You import your component(s) into its own module files. Then you import your modules into `app.module.ts`.
+NOTE: You CAN MIX standalone and module based components, but it's probably not best practice, but helpful for migration.
+
+Module-based components:
+- You import your component(s) into the module class. You declare the imports differently when you import modules/components into another module.
+- Every module needs to import `BrowserModule`.
+- On v19+, standalone is default. You need to explicitly set standalone to false to get a module component.
 
 Standalone components:
-- The new default.
-- You import components into another component directly.
+- The new default. You don't need to set standalone to true.
+- You import components into another component directly. No module class needed.
