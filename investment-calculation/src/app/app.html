@@ -1,4 +1,5 @@
-<app-header (parameter)="calculateResult($event)"></app-header>
-<app-result [results]="calculatedResults"></app-result>
+<app-header></app-header>
+<app-user-input (parameter)="calculateResult($event)"></app-user-input>
+<app-result [results]="calculatedResults()"></app-result>
 
 <router-outlet />

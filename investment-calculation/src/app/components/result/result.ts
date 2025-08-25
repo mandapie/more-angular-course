@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResultModel } from '../../models/result.model';
 
@@ -9,5 +9,5 @@ import { ResultModel } from '../../models/result.model';
   styleUrl: './result.css'
 })
 export class ResultComponent {
-  @Input() results: ResultModel[] = []; 
+  results = input<ResultModel[]>([]); 
 }
