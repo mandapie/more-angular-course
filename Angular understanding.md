@@ -63,6 +63,7 @@ I can't seem to find a standard Angular folder structure. I think this makes the
   
 #### Pipes
 - transforms values to a specific format. Eg a date Pipe. You'll need to import the module to use it.
+- 
 
 #### Two-way binding
 - The syntax is `[(directive)]="property"`. Eg `<input [(ngModel)]="inputName"/>` offers 2 way binding for an input. It inputs/outputs value for the `inputName` property set in the component class.
