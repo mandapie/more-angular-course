@@ -37,7 +37,8 @@ I can't seem to find a standard Angular folder structure. I think this makes the
 - You can "enhance" elements with directives. Eg `<input ngModel/>` ngModel is directive provided by Angular that extracts changing inputs.
 - Kinda like component, you can create your own directive, but it doesn't have a template. You'll need to import a directive like a component too.
 - Components are directives with templates.
-- 
+- There is Attribute directive, eg `ngModel`, and structural directive, eg `*ngIf`. Structural directives need the asterisk.
+- Host directives... You can add an array of directives to the `hostDirectives` property inside of a decorator to use its functionality. See the LogDirective in Directives-DeepDive folder for example.
   
 #### Services
 - Even though components can handle logics, but they should be in Services.

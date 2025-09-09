@@ -4,4 +4,21 @@
   <hr />
 
   <app-auth />
+
+  <!-- *ngIf is deprecated, but this is shown here for example -->
+  <!-- <p *ngIf="isAdmin()">Only admin can see this!</p> -->
+
+  <!-- @if(isAdmin()) {
+    <p>Only admin can see this!</p>
+  } -->
+
+  <!-- behind the scenes of the *customDirective -->
+  <!-- <ng-template appAuth="admin">
+    <p>Only admin can see this!</p>
+  </ng-template> -->
+
+  <!-- custom structural directive -->
+  <p *appAuth="'admin'" class="protected-content admin">Only admin can see this!</p>
+  <p *appAuth="'user'" class="protected-content authenticated">Only user can see this!</p>
+  <p *appAuth="'guest'" class="protected-content unauthenticated">Only guest can see this!</p>
 </main>
