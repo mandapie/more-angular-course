@@ -4,13 +4,13 @@
       <img src="temp-icon.png" alt="Thermometer icon" />
       <div>
         <h2>Current Temperatures</h2>
-        <p>{{ currentDate }}</p>
+        <p>{{ currentDate | date }}</p>
       </div>
     </header>
-    <p>New York: {{ currentTemperaturs.newYork }}</p>
-    <p>Berlin: {{ currentTemperaturs.berlin }}</p>
-    <p>Paris: {{ currentTemperaturs.paris }}</p>
-    <p>Chicago: {{ currentTemperaturs.chicago }}</p>
+    <p>New York: {{ currentTemperaturs.newYork | temp: 'C':'F' }}</p>
+    <p>Berlin: {{ currentTemperaturs.berlin | temp: 'C':'F' }}</p>
+    <p>Paris: {{ currentTemperaturs.paris | temp: 'C':'F' }}</p>
+    <p>Chicago: {{ currentTemperaturs.chicago | temp: 'C':'F' }}</p>
   </article>
 
   <article class="temperatures">
@@ -22,8 +22,12 @@
       </div>
     </header>
     <ul>
-      @for (temperature of historicTemperatures; track temperature) {
-      <li (click)="onReset($index)">{{ temperature }}</li>
+      <!--
+        NOTE: when you run this, clicking the items does not visually make sense because of the way the items in the array is arranged.
+        This is just to demonstrate how pure vs impure pipes work
+      -->
+      @for (temperature of historicTemperatures | sort: 'desc'; track temperature) {
+      <li (click)="onReset($index)">{{ temperature | temp: 'C'}}</li>
       }
     </ul>
   </article>

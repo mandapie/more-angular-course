@@ -63,7 +63,12 @@ I can't seem to find a standard Angular folder structure. I think this makes the
   
 #### Pipes
 - transforms values to a specific format. Eg a date Pipe. You'll need to import the module to use it.
-- 
+- You can create custom pipes.
+- You can chain pipes, but beware not all pipes will work well with one another, as especially the built in ones. Though, you can customize your own pipes to work with one another.
+- Chain pipe example `<p>New York: {{ currentTemperature.newYork | number: '1.1-2' | temp: 'C':'F' }}</p>`
+- pure vs impure pipes:
+  - pipes are default pure pipes. To set it to false, update it in the decorator.
+  - See [pipes explanation](https://stackoverflow.com/questions/39285550/what-is-an-impure-pipe-in-angular)
 
 #### Two-way binding
 - The syntax is `[(directive)]="property"`. Eg `<input [(ngModel)]="inputName"/>` offers 2 way binding for an input. It inputs/outputs value for the `inputName` property set in the component class.
