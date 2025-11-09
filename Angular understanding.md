@@ -44,6 +44,7 @@ I can't seem to find a standard Angular folder structure. I think this makes the
 - Even though components can handle logics, but they should be in Services.
 - Be sure to use dependency injections for services, that way we're not instantiating different instances, but use the same service instance.
   - You can inject services with constructors or the inject() function.
+- Typically, `providedIn: 'root'` is used. See [Hierarchical injectors](https://angular.dev/guide/di/hierarchical-dependency-injection)
 
 #### Content projection with ng-content
 - use ng-content to display child component content to the parent component?
@@ -210,3 +211,9 @@ See https://angular.dev/guide/components/lifecycle
 - `@ViewChildren` is to grab multiple ViewChild items.
 - `viewChild()` is the function version of the decorator. Kinda like `input()`, it is introduced in v17. It's a signal feature. Eg `private formVariable = viewChild<ElementRef<HTMLFormElement>>('form')`
 - `@ContentChild` is used for elements that will be projected into an <ng-content> element
+
+#### Custom Dependency Injections(DI)
+- Need to revisit this because I skimmed through this. But key points are
+  - You can create your dependencies to inject.
+  - You can also inject non-services.
+
